@@ -100,3 +100,21 @@
   margin-left: 0;
   overflow: hidden;
 }
+
+@media (max-width: 768px) {
+  .closed {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    position: absolute;
+    z-index: 200;
+  }
+
+  .closed {
+    width: 0;
+    overflow: hidden;
+  }
+}
