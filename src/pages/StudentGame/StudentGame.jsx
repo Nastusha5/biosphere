@@ -49,18 +49,23 @@ export default function GamePage({ user, onLogout }) {
     const allEcosystemsCompleted = completedEcosystems.length === ECOSYSTEMS.length;
 
     useEffect(() => {
-        if (!user) {
-            navigate('/');
-        } else {
-            setStudent(user);
-            setCompletedEcosystems(user.completedEcosystems || []);
-            if((user.completedEcosystems || []).length > 0) {
-                setIntroVideoCompleted(true);
-                setIsResearchStarted(true);
-            }
-            setLoading(false);
-        }
-    }, [user, navigate]);
+      if (!user) {
+          navigate('/');
+      } else {
+          setStudent(user);
+          const userScores = user.scores || {};
+          const hasProgress = Object.keys(userScores).length > 0;
+          
+          setCompletedEcosystems(user.completedEcosystems || []);
+          
+          if (hasProgress) {
+              setIntroVideoCompleted(true);
+              setIsResearchStarted(true);
+          }
+          
+          setLoading(false);
+      }
+  }, [user, navigate]);
     
     const handleSaveScore = async (ecosystemId, scoreType, score) => {
         if (!student || score < 0) return;
