@@ -109,41 +109,43 @@ export default function GamePage({ user, onLogout }) {
                 <div className={styles.overlay}></div>
             )}
             
-            <div className={styles.progressTrackerContainer}>
-                <ProgressTracker completedEcosystems={completedEcosystems} />
-            </div>
+            <div className={styles.gameContent}>
+                <div className={styles.progressTrackerContainer}>
+                    <ProgressTracker completedEcosystems={completedEcosystems} />
+                </div>
 
-            
-            <div className={styles.mainContent}>
-               {!isResearchStarted && !introVideoCompleted && (
-                    <div className={styles.startResearchContainer}>
-                        <button className={`${styles.button} ${styles.lgButton} ${styles.startResearchButton}`} onClick={handleStartResearch}>
-                            Почати дослідження
-                        </button>
-                    </div>
-                )}
-               {introVideoCompleted && currentEcosystem && !allEcosystemsCompleted && (
-                    <div className={styles.ecosystemExploreContainer}>
-                        <h2 className={styles.ecosystemSubheading}>Екосистема</h2>
-                        <h1 className={styles.ecosystemHeading}>{currentEcosystem.name.toUpperCase()}</h1>
-                         <button className={`${styles.button} ${styles.lgButton} ${styles.exploreButton}`} onClick={() => handleExploreEcosystem(currentEcosystem.id)}>
-                            Дослідити
-                        </button>
-                    </div>
-                )}
-                 {introVideoCompleted && allEcosystemsCompleted && (
-                    <div className={styles.completionContainer}>
-                        <img
-                            src="/progress/winner.png"
-                            alt="Переможець"
-                            width={160}
-                            height={160}
-                            className="mb-8"
-                        />
-                        <h1 className={styles.completionHeading}>Вітаємо!</h1>
-                        <p className={styles.completionText}>Ти опанував всі екосистеми Біосфери-2</p>
-                    </div>
-                )}
+                
+                <div className={styles.mainContent}>
+                {!isResearchStarted && !introVideoCompleted && (
+                        <div className={styles.startResearchContainer}>
+                            <button className={`${styles.button} ${styles.lgButton} ${styles.startResearchButton}`} onClick={handleStartResearch}>
+                                Почати дослідження
+                            </button>
+                        </div>
+                    )}
+                {introVideoCompleted && currentEcosystem && !allEcosystemsCompleted && (
+                        <div className={styles.ecosystemExploreContainer}>
+                            <h2 className={styles.ecosystemSubheading}>Екосистема</h2>
+                            <h1 className={styles.ecosystemHeading}>{currentEcosystem.name.toUpperCase()}</h1>
+                            <button className={`${styles.button} ${styles.lgButton} ${styles.exploreButton}`} onClick={() => handleExploreEcosystem(currentEcosystem.id)}>
+                                Дослідити
+                            </button>
+                        </div>
+                    )}
+                    {introVideoCompleted && allEcosystemsCompleted && (
+                        <div className={styles.completionContainer}>
+                            <img
+                                src="/progress/winner.png"
+                                alt="Переможець"
+                                width={160}
+                                height={160}
+                                className="mb-8"
+                            />
+                            <h1 className={styles.completionHeading}>Вітаємо!</h1>
+                            <p className={styles.completionText}>Ти опанував всі екосистеми Біосфери-2</p>
+                        </div>
+                    )}
+                </div>
             </div>
 
             {!loading && student && (
