@@ -69,6 +69,10 @@
   background-color: #fff;
 }
 
+.chatHeader {
+  display: none; 
+}
+
 .chatHistory {
   flex-grow: 1;
   padding: 20px;
@@ -141,4 +145,46 @@
   height: 100%;
   color: #999;
   font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+  .dialogsList {
+    width: 100%;
+    min-width: unset;
+    border-right: none;
+  }
+  
+  .chatWindow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    background-color: #fff;
+    z-index: 100;
+  }
+  
+  .chatWindow.active {
+    transform: translateX(0);
+  }
+
+  .chatHeader {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #fff;
+  }
+
+  .backButton {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    color: #333;
+  }
 }
