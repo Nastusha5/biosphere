@@ -1,0 +1,144 @@
+
+.chatContainer {
+  display: flex;
+  flex-grow: 1;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f7f9fc;
+  box-sizing: border-box;
+}
+
+.dialogsList {
+  width: 30%;
+  min-width: 200px;
+  border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.dialogItem {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dialogItem:hover {
+  background-color: #f0f2f5;
+}
+
+.dialogItem.active {
+  background-color: #e6f7ff;
+  border-left: 3px solid #e66b00;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  background-color: #e66b00;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.dialogDetails {
+  flex-grow: 1;
+}
+
+.studentName {
+  font-weight: 500;
+  margin: 0;
+  color: #333;
+}
+
+.timestamp {
+  color: #999;
+  font-size: 0.8em;
+  margin-left: auto;
+}
+
+.chatWindow {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.chatHistory {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f7f9fc;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: flex-end;
+}
+
+.message.teacher {
+  justify-content: flex-end;
+}
+
+.message p {
+  background-color: #fff;
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 70%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.message.teacher p {
+  background-color: #e66b00;
+  color: white;
+}
+
+.messageForm {
+  display: flex;
+  padding: 20px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #fff;
+}
+
+.messageInput {
+  flex-grow: 1;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.messageInput:focus {
+  border-color: #e66b00;
+}
+
+.sendButton {
+  padding: 12px 25px;
+  background-color: #e66b00;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+.sendButton:hover {
+  background-color: #ff7f00;
+}
+
+.noChatSelected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #999;
+  font-size: 1.2em;
+}

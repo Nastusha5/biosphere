@@ -1,0 +1,22 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Дозволяє читання та запис для всіх шляхів. 
+    // УВАГА: Це правило є небезпечним для продакшену.
+    // Його слід замінити на більш специфічні правила.
+    
+    // Дозвіл для колекції викладачів
+    match /teachers/{teacherId} {
+      allow read, write: if true;
+    }
+
+    // Дозвіл для колекції студентів (якщо вона коренева)
+    match /students/{studentId} {
+      allow read, write: if true;
+    }
+
+    // Дозвіл для колекції груп та всього, що всередині
+    match /groups/{groupId=**} {
+      allow read, write: if true;
+    }
+  }
+}

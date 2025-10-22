@@ -1,0 +1,228 @@
+
+.sheetOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-start;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sheetContent {
+    width: 100%;
+    max-width: 520px;
+    background-color: #ffffff;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.sheetHeader {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sheetTitle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #e66b00; 
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sheetDescription {
+    color: #777;
+    margin-top: 0.25rem;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.closeButton:hover {
+  color: #555;
+  transform: rotate(90deg);
+}
+
+.scrollArea {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem 2rem;
+    background-color: #f9f9f9;
+}
+
+.messageContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.emptyState {
+    text-align: center;
+    color: #aaa;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.iconLarge {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: #ddd;
+}
+
+.messageRow {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+    max-width: 90%;
+}
+
+.userRow {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.teacherRow {
+    align-self: flex-start;
+}
+
+.avatar {
+    flex-shrink: 0;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.25rem;
+}
+
+.userRow .avatar {
+    background-color: #e66b00;
+    color: white;
+}
+
+.teacherRow .avatar {
+    background-color: #e66b00;
+    color: white;
+}
+
+.messageBubble {
+    padding: 0.8rem 1.2rem;
+    border-radius: 18px;
+    font-size: 1rem;
+    line-height: 1.5;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.userBubble {
+    background-color: #e66b00;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.teacherBubble {
+    background-color: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-bottom-left-radius: 4px;
+}
+
+.sheetFooter {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid #f0f0f0;
+    background-color: #ffffff;
+}
+
+.chatForm {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    align-items: center;
+}
+
+.textarea {
+    flex: 1;
+    resize: none;
+    background-color: #f5f5f5;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.textarea:focus {
+    outline: none;
+    border-color: #e66b00; 
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.sendButton {
+    background-color: #e66b00;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.2s;
+    flex-shrink: 0;
+}
+
+.sendButton:hover {
+    background-color: #e66b00;
+}
+
+.sendButton:active {
+    transform: scale(0.9);
+}
+
+.sendButton:disabled {
+    background-color: #e66b00;
+    cursor: not-allowed;
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #e66b00;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

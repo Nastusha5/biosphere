@@ -1,0 +1,74 @@
+
+.selectContainer {
+  position: relative;
+  min-width: 200px;
+}
+
+.selectHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  height: 44px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.selectHeader.correct {
+  border-color: #22c55e;
+  background-color: #f0fdf4;
+}
+
+.selectHeader.incorrect {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.selectHeader span {
+  font-weight: 500;
+  color: #374151;
+}
+
+.chevron {
+  color: #6b7280;
+  transition: transform 0.2s;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+.optionsContainer {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.option {
+  padding: 0.75rem 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #374151;
+}
+
+.option:hover {
+  background-color: #f3f4f6;
+}
+
+.option.selected {
+  background-color: #e66b00;
+  color: white;
+  font-weight: 500;
+}

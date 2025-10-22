@@ -1,0 +1,80 @@
+
+.dialogOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 60;
+}
+
+.dialogContent {
+    background-color: #fff;
+    color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    border: 1px solid #e66b00;
+}
+
+.dialogHeader {
+    margin-bottom: 1.5rem;
+}
+
+.dialogTitle {
+    font-size: 1.75rem;
+    color: #e66b00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.dialogDescription {
+    margin-top: 0.5rem;
+    color: #aaa;
+}
+
+.scoresContainer {
+    margin-bottom: 1.5rem;
+}
+
+.scoreItem {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    color: black;
+}
+
+.score {
+    font-weight: bold;
+    color: #e66b00;
+}
+
+.separator {
+    border-color: #444;
+    margin: 1rem 0;
+}
+
+.totalScore {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+}
+
+.dialogFooter {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    background-color: #e66b00;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    cursor: pointer;
+}

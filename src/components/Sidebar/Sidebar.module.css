@@ -1,0 +1,102 @@
+.sidebar {
+  height: 100vh;
+  background-color: #e66b00;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.open {
+  width: 250px;
+}
+
+.closed {
+  width: 80px;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+.footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logoutMenu {
+  list-style-type: none;
+  padding: 1rem;
+  margin: 0;
+}
+
+.menuItem {
+  margin-bottom: 0.25rem;
+}
+
+.menuLink {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.menuLink:hover,
+.active {
+  background-color: white;
+  color: #e66b00;
+}
+
+.icon {
+  font-size: 1.5rem;
+  min-width: 2rem;
+  text-align: center;
+}
+
+.text {
+  margin-left: 1rem;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s ease, margin-left 0.3s ease;
+}
+
+.hidden {
+  opacity: 0;
+  width: 0;
+  margin-left: 0;
+  overflow: hidden;
+}

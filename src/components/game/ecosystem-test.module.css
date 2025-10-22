@@ -1,0 +1,216 @@
+
+.testWrapper {
+    padding: 2rem;
+    background-color: #ffffff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.progressBarContainer {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 100%;
+    background: linear-gradient(90deg, #f26f21, #f59e0b);
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+}
+
+.progressText {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.questionCard {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 2rem;
+    flex-grow: 1;
+}
+
+.questionCard h3 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+.optionsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.optionCard {
+    display: flex;
+    align-items: center;
+    background-color: #fdfdfd;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.optionCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+.optionCard.selected {
+    border-color: #f26f21;
+    background-color: #fff7ed;
+}
+
+.radioInput {
+    display: none;
+}
+
+.optionContent {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.optionLetter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #555;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.optionCard.selected .optionLetter {
+    background-color: #f26f21;
+    color: white;
+}
+
+.matchingContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.matchingRow {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+.matchingPairText {
+    font-size: 1rem;
+}
+
+.select {
+    width: 220px;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: white;
+}
+
+
+.navigationFooter {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.button {
+    padding: 0.8rem 2.5rem;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(90deg, #f26f21, #f59e0b);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(242, 111, 33, 0.4);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(242, 111, 33, 0.5);
+}
+
+.button:disabled {
+    background: #fab58a;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.completedContainer, .resultsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.completedCard, .resultsCard {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 500px;
+}
+
+.completedCard h2, .resultsCard h2 {
+    margin-top: 0;
+    font-size: 2rem;
+    color: #333;
+}
+
+.checkIcon, .resultsDonut {
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.checkIcon svg {
+    font-size: 5rem;
+    color: #f26f21;
+}
+
+.resultsContent {
+    margin: 2rem 0;
+    font-size: 1.2rem;
+}
+
+.finalScore {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f26f21;
+    margin: 1rem 0;
+}
+
+.resultsFooter {
+    margin-top: 2rem;
+}

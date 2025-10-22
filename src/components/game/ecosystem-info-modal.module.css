@@ -1,0 +1,123 @@
+
+.dialogOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.dialogContent {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 1200px;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  animation: slide-down 0.3s ease-out;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.dialogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.dialogTitle {
+  color: #e66b00;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.closeButton:hover {
+  color: #555;
+}
+
+.tabsContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.tabsList {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.tabTrigger {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #e5e7eb;
+  background-color: #f3f4f6;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #6b7280;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tabTrigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tabTrigger:not(:disabled):hover {
+    background-color: #e5e7eb;
+}
+
+.activeTab {
+  background-color: #e66b00;
+  color: white;
+  border-color: #e66b00;
+}
+
+.activeTab:hover {
+    background-color: #e66b00 !important;
+}
+
+.tabsContent {
+    flex-grow: 1;
+    overflow: hidden;
+    padding: 0;
+    background-color: #fff;
+    border-radius: 8px;
+    position: relative;
+}

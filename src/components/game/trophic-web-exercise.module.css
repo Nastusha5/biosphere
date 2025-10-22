@@ -1,0 +1,134 @@
+.exerciseContainer {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.header {
+    text-align: center;
+    flex-shrink: 0; 
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e66b00;
+    margin: 0;
+    text-align: left;
+}
+
+.description {
+    font-size: 16px;
+    color: #666;
+    text-align: left;
+}
+
+.chainsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-height: 400px; 
+    overflow-y: auto; 
+    padding-right: 16px; 
+    min-height: 0; 
+}
+
+.chainRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.chainItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.organismStart {
+    padding: 10px 16px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.arrow {
+    font-size: 24px;
+    color: #888;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -5px;
+    flex-shrink: 0; 
+}
+
+.button {
+    background-color: #e66b00;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.button:hover:not(:disabled) {
+    background-color: #e66b00;
+}
+
+.attemptsCounter {
+    font-size: 14px;
+    color: #555;
+}
+
+.completedContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.completedCard {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 500px;
+}
+
+.completedCard h2 {
+    margin-top: 0;
+    font-size: 2rem;
+    color: #333;
+}
+
+.completedCard p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.checkIcon {
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.checkIcon svg {
+    font-size: 5rem;
+    color: #f26f21;
+}

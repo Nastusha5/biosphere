@@ -1,0 +1,96 @@
+
+.progressTrackerContainer {
+    --primary-color: #e66b00;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.5rem 1rem;
+}
+
+.winnerBadgeContainer {
+    position: relative;
+    height: 7rem;
+    width: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: scale-in 0.5s forwards;
+    animation-delay: 0.2s;
+}
+
+.progressRing {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.progressRingBg {
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 10;
+    fill: none;
+}
+
+.progressRingFg {
+    stroke: var(--primary-color);
+    stroke-width: 10;
+    fill: none;
+    stroke-linecap: round;
+    transform: rotate(-90deg) translate(-100px, 0px);
+    transition: stroke-dashoffset 1s ease-out, filter 1s ease-out;
+}
+
+.winnerImage {
+    border-radius: 50%;
+    transition: filter 1s ease-out;
+}
+
+.ecosystemBadge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.ecosystemImage {
+    transition: all 0.5s;
+}
+
+.grayscale {
+    filter: grayscale(100%);
+}
+
+.ecosystemGroup {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.animateEcoRight {
+    animation-name: eco-right;
+    animation-duration: 0.6s;
+}
+
+.animateEcoLeft {
+    animation-name: eco-left;
+    animation-duration: 0.6s;
+}
+
+@keyframes scale-in {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes eco-right {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes eco-left {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}

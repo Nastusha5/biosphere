@@ -1,0 +1,230 @@
+
+.gamePage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.backgroundImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.progressTrackerContainer {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.logoutButtonContainer {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+}
+
+.mainContent {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    color: white;
+}
+
+.startResearchContainer {
+    position: relative;
+}
+
+.ecosystemExploreContainer, .completionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ecosystemSubheading {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.ecosystemHeading {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.completionHeading {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.completionText {
+    font-size: 1.25rem;
+}
+
+.bottomBar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.bottomNav {
+    display: flex;
+    gap: 1rem;
+    background-color: #e66b00e6;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+}
+
+.dropdownContainer {
+    position: relative;
+}
+
+.dropdownMenu {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border-radius: 12px;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    width: 240px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border: 1px solid #f0f0f0;
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.dropdownMenuLabel {
+    padding: 0.5rem 0.75rem;
+    font-weight: 600;
+    color: #e66b00;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dropdownMenuSeparator {
+    height: 1px;
+    background-color: #f0f0f0;
+    margin: 0.5rem 0;
+}
+
+.dropdownMenuItem {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #333;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.dropdownMenuItem:hover {
+    background-color: #f5f5f5;
+    color: #e66b00;
+}
+
+.dropdownMenuItem.disabled {
+    color: #aaa;
+    cursor: not-allowed;
+    background-color: transparent;
+}
+
+.button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.lgButton {
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+}
+
+.startResearchButton, .exploreButton {
+    background-color: #e66b00e6;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 0 0 rgba(230, 107, 0, 0.7);
+}
+
+.destructiveButton {
+    background-color: #f44336;
+}
+
+.ghostButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navButton {
+    font-size: 2rem;
+}
+
+.icon {
+    font-size: 2rem;
+}
+
+.loading {
+    color: white;
+    font-size: 1.5rem;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(230, 107, 0, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 20px rgba(230, 107, 0, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(230, 107, 0, 0);
+    }
+}

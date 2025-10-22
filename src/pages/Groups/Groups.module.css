@@ -1,0 +1,148 @@
+.groupsContainer {
+  padding: 0.5rem;
+  background-color: #f9f9f9;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.createGroupButton {
+  background-color: #e66b00;
+  color: white;
+  border: none;
+  padding: 0.9rem 1.8rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.createGroupButton:hover {
+  background-color: #e67e22;
+  transform: translateY(-2px);
+}
+
+.accordion {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.accordionItem {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.accordionItem:last-child {
+  border-bottom: none;
+}
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.8rem;
+  cursor: pointer;
+  background-color: #fff;
+  transition: background-color 0.3s;
+}
+
+.accordionHeader:hover {
+  background-color: #fdf5f0;
+}
+
+.groupName {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.groupActions {
+  display: flex;
+  align-items: center;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  color: #777;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin-left: 1.2rem;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.actionButton:hover {
+  color: #e66b00;
+  transform: scale(1.1);
+}
+
+.accordionIcon {
+  font-size: 1.5rem;
+  color: #e66b00;
+  margin-left: 1.5rem;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.accordionIcon.open {
+  transform: rotate(180deg);
+}
+
+.accordionContent {
+  padding: 1.8rem;
+  background-color: #fdfdfd;
+  border-top: 1px solid #e0e0e0;
+}
+
+.studentListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.addStudentButton {
+  background-color: #e66b00;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.addStudentButton:hover {
+  background-color: #e67e22;
+  transform: translateY(-2px);
+}
+
+.studentsTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.studentsTable th,
+.studentsTable td {
+  padding: 1rem 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.studentsTable th {
+  background-color: #f7f7f7;
+  font-weight: 600;
+  color: #555;
+}
+
+.studentsTable tr:last-child td {
+  border-bottom: none;
+}

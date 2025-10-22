@@ -1,0 +1,198 @@
+.journalContainer {
+    padding: 2rem;
+    background-color: #f9f9f9;
+}
+
+.accordion {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.accordionItem {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.accordionItem:last-child {
+    border-bottom: none;
+}
+
+.accordionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.8rem;
+    cursor: pointer;
+    background-color: #fff;
+    transition: background-color 0.3s;
+}
+
+.accordionHeader:hover {
+    background-color: #fdf5f0;
+}
+
+.groupName {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.accordionIcon {
+    font-size: 1.5rem;
+    color: #e66b00;
+    margin-left: 1.5rem;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.accordionIcon.open {
+    transform: rotate(180deg);
+}
+
+.accordionContent {
+    padding: 1rem;
+    background-color: #fdfdfd;
+    border-top: 1px solid #e0e0e0;
+}
+
+.tableContainer {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.studentsTable {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+}
+
+.studentsTable th,
+.studentsTable td {
+    border: none;
+    padding: 0.8rem 0.6rem;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.studentsTable thead tr {
+    border-bottom: 2px solid #e66b00;
+}
+
+.studentsTable th {
+    background-color: #fff;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    vertical-align: bottom;
+    color: #333;
+}
+
+.studentsTable tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+}
+
+.studentsTable tbody tr:last-child {
+    border-bottom: none;
+}
+
+.studentsTable tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.studentsTable tbody tr:hover {
+    background-color: #fdf5f0;
+}
+
+.studentNameColumn {
+    width: 150px;
+    text-align: left;
+    font-weight: 500;
+}
+
+.scoreColumn {
+    width: 70px;
+    font-weight: 600;
+}
+
+.progressColumn {
+    width: 100px;
+}
+
+.subHeader {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    font-size: 0.8rem;
+    font-weight: normal;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 4px;
+    padding-top: 4px;
+    height: 60px;
+}
+
+.subHeader span {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    padding: 0 2px;
+}
+
+.progressContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.progressContainer progress {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: none;
+}
+
+.progressContainer progress::-webkit-progress-bar {
+    background-color: #eee;
+    border-radius: 4px;
+}
+
+.progressContainer progress::-webkit-progress-value {
+    background-color: #e66b00;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progressContainer progress::-moz-progress-bar {
+    background-color: #e66b00;
+    border-radius: 4px;
+}
+
+.cellContent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    align-items: center;
+}
+
+.noGroupsCard {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}

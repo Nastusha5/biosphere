@@ -1,0 +1,75 @@
+
+.scrollArea {
+    height: 100%;
+    overflow-y: auto;
+    padding: 1.5rem;
+    background-color: white;
+}
+
+.contentWrapper {
+    padding: 1.5rem;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    background-color: #fdfdfd;
+}
+
+.mainContent p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    text-align: left;
+    color: #333;
+}
+
+.separator {
+    display: none; 
+}
+
+.funFactContainer {
+    background-color: #fffaf0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #ffe5b9;
+    margin-top: 2rem;
+}
+
+.funFactTitle {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #e66b00;
+    margin-bottom: 1rem;
+}
+
+.funFactContent p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: left;
+    color: #444;
+}
+
+.footer {
+    padding: 2rem 1.5rem 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button {
+    background-color: #e66b00;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:disabled {
+    background-color: #f9cda9;
+    cursor: not-allowed;
+}
+
+.button:not(:disabled):hover {
+    background-color: #d16000;
+}
