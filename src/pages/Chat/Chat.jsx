@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './Chat.module.css';
 import * as chatApi from '../../api/chatApi';
 import { getStudentFromSession } from '../../api/studentApi';
+import * as FaIcons from 'react-icons/fa';
 
 const Chat = ({ user }) => {
   const [dialogs, setDialogs] = useState([]);
@@ -49,6 +50,10 @@ const Chat = ({ user }) => {
     });
     return () => unsubscribe();
   };
+  
+  const handleBack = () => {
+    setActiveChat(null);
+  };
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -83,9 +88,13 @@ const Chat = ({ user }) => {
           </div>
         ))}
       </div>
-      <div className={styles.chatWindow}>
+      <div className={`${styles.chatWindow} ${activeChat ? styles.active : ''}`}>
         {activeChat ? (
           <>
+            <div className={styles.chatHeader}>
+              <button className={styles.backButton} onClick={handleBack}><FaIcons.FaArrowLeft /></button>
+              <h3>Чат з учнем</h3>
+            </div>
             <div className={styles.chatHistory} ref={chatHistoryRef}>
               {loading && <p>Завантаження повідомлень...</p>}
               {messages.map((msg, index) => (
