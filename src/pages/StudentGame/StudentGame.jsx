@@ -26,7 +26,7 @@ const ECOSYSTEMS = [
   { id: 'savannah', name: 'Савана', icon: '/progress/savannah.png', content: savannahContent, funFact: savannahFunFact, videoId: 'qh7JLKIJ4Nc', testId: 'savannah-test' },
   { id: 'ocean', name: 'Океан', icon: '/progress/ocean.png', content: oceanContent, funFact: oceanFunFact, videoId: 'jHwXRPBCsec', testId: 'ocean-test' },
   { id: 'tropical-forests', name: 'Тропічні ліси', icon: '/progress/tropical-forests.png', content: tropicalForestsContent, funFact: tropicalForestsFunFact, videoId: 'Mv5Vvy9E3KQ', testId: 'tropical-forests-test' },
-  { id: 'swamp', name: 'Болото', icon: '/progress/swamp.png', content: swampContent, funFact: swampFunFact, videoId: 'KlVmRjcN0Yk', testId: 'swamp-test' },
+  { id: 'swamp', name: 'Мангрові угіддя', icon: '/progress/swamp.png', content: swampContent, funFact: swampFunFact, videoId: 'KlVmRjcN0Yk', testId: 'swamp-test' },
   { id: 'agroecosystem', name: 'Агроекосистема', icon: '/progress/agroecosystem.png', content: agroecosystemContent, funFact: agroecosystemFunFact, videoId: null, testId: 'agroecosystem-test' },
 ];
 
