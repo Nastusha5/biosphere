@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Chat.module.css';
 import * as chatApi from '../../api/chatApi';
+import { getStudentFromSession } from '../../api/studentApi';
 
 const Chat = ({ user }) => {
   const [dialogs, setDialogs] = useState([]);
@@ -13,8 +14,21 @@ const Chat = ({ user }) => {
 
   useEffect(() => {
     setLoading(true);
-    const unsubscribe = chatApi.getDialogs(fetchedDialogs => {
-      setDialogs(fetchedDialogs.sort((a, b) => new Date(b.lastMessage.timestamp) - new Date(a.lastMessage.timestamp)));
+    const unsubscribe = chatApi.getDialogs(async (fetchedDialogs) => {
+      const dialogsWithStudentData = await Promise.all(
+        fetchedDialogs.map(async (dialog) => {
+          const student = await getStudentFromSession(dialog.student.id);
+          return {
+            ...dialog,
+            student: {
+              ...dialog.student,
+              firstName: student?.firstName || 'User',
+              lastName: student?.lastName || dialog.student.id,
+            },
+          };
+        })
+      );
+      setDialogs(dialogsWithStudentData.sort((a, b) => b.lastMessage.timestamp.toMillis() - a.lastMessage.timestamp.toMillis()));
       setLoading(false);
     });
     return () => unsubscribe();
@@ -77,7 +91,7 @@ const Chat = ({ user }) => {
               {messages.map((msg, index) => (
                 <div key={index} className={`${styles.message} ${msg.sender === 'teacher' ? styles.teacher : styles.student}`}>
                   <p>{msg.text}</p>
-                  <span className={styles.timestamp}>{new Date(msg.timestamp).toLocaleTimeString()}</span>
+                  <span className={styles.timestamp}>{new Date(msg.timestamp?.toDate()).toLocaleTimeString()}</span>
                 </div>
               ))}
             </div>
