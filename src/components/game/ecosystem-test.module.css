@@ -214,3 +214,97 @@
 .resultsFooter {
     margin-top: 2rem;
 }
+
+@media (max-width: 768px) {
+    .testWrapper {
+        padding: 1.5rem;
+    }
+
+    .questionCard {
+        padding: 1.5rem;
+    }
+
+    .questionCard h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .optionsGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .matchingRow {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+
+    .select {
+        width: 100%;
+    }
+
+    .completedCard, .resultsCard {
+        padding: 2rem;
+        width: 100%;
+    }
+
+    .completedCard h2, .resultsCard h2 {
+        font-size: 1.6rem;
+    }
+
+    .resultsContent {
+        font-size: 1.1rem;
+    }
+
+    .finalScore {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .testWrapper {
+        padding: 1rem;
+    }
+
+    .questionCard {
+        padding: 1rem;
+    }
+
+    .questionCard h3 {
+        font-size: 1.1rem;
+    }
+
+    .optionCard {
+        padding: 0.8rem;
+    }
+
+    .optionLetter {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+        margin-right: 0.8rem;
+    }
+
+    .button {
+        padding: 0.7rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    .completedCard, .resultsCard {
+        padding: 1.5rem;
+    }
+
+    .completedCard h2, .resultsCard h2 {
+        font-size: 1.4rem;
+    }
+
+    .resultsDonut svg {
+        width: 100px;
+        height: 100px;
+    }
+
+    .checkIcon svg {
+        font-size: 4rem;
+    }
+}
