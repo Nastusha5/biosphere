@@ -121,7 +121,7 @@ export default function JournalPage() {
                               <div>{index + 1}</div>
                               <div className={styles.subHeader}>
                                 <span>Тест</span>
-                                <span>Вправа</span>
+                                <span>Практика</span>
                                 <span>Сума</span>
                               </div>
                             </th>
