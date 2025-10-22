@@ -22,7 +22,7 @@ export const swampFunFact = {
 
 export const swampTrophicWeb = {
   id: 'swamp-food-chains',
-  title: 'Харчові ланцюги Болота',
+  title: 'Харчові ланцюги Мангрових угідь',
   organisms: [
     { id: 'mangrove', name: 'Мангрове дерево', image: '/ecosystems/swamp/mangrove.png' },
     { id: 'crustaceans', name: 'Ракоподібні', image: '/ecosystems/swamp/crustaceans.png' },
