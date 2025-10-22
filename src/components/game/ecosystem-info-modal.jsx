@@ -35,25 +35,45 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
   const [showFinalScoreModal, setShowFinalScoreModal] = useState(false);
 
   useEffect(() => {
-    if (student?.scores && student.scores[ecosystem.id]) {
-      const savedScores = student.scores[ecosystem.id];
-      if (savedScores.test !== undefined) {
-        setIsTestPassed(true);
-        setTestScore(savedScores.test);
+    if (isOpen) {
+      const savedScores = student?.scores?.[ecosystem.id] || {};
+      const testCompleted = savedScores.test !== undefined;
+      const practicalCompleted = savedScores.exercise !== undefined;
+      const hasPractical = ['savannah', 'ocean', 'swamp', 'tropical-forests', 'desert'].includes(ecosystem.id);
+
+      // Set completion states from saved data
+      setIsTestPassed(testCompleted);
+      setTestScore(testCompleted ? savedScores.test : null);
+      setIsPracticalPassed(practicalCompleted);
+      setPracticalScore(practicalCompleted ? savedScores.exercise : null);
+      
+      // Infer pre-requisite steps completion
+      const videoEffectivelyWatched = testCompleted || isCompleted || !ecosystem.videoId;
+      const textEffectivelyRead = testCompleted || isCompleted;
+
+      setIsVideoWatched(videoEffectivelyWatched);
+      setIsTextRead(textEffectivelyRead);
+
+      // Determine the initial tab
+      let initialTab = "video";
+      if (videoEffectivelyWatched) initialTab = "text";
+      if (textEffectivelyRead) initialTab = "test";
+      if (testCompleted) {
+        if (hasPractical && !practicalCompleted) {
+          initialTab = "practical";
+        } else {
+          // If practical is done or doesn't exist, just show the test results
+          initialTab = "test"; 
+        }
       }
-      if (savedScores.exercise !== undefined) {
-        setIsPracticalPassed(true);
-        setPracticalScore(savedScores.exercise);
-      }
+      
+      setActiveTab(initialTab);
+
+    } else {
+      // Reset transient state when modal closes
+      setIsTestJustCompleted(false);
     }
-    if (!isCompleted) {
-        const savedTestScore = student?.scores?.[ecosystem.id]?.test;
-        setIsTestPassed(savedTestScore !== undefined);
-     } else {
-        setIsTestPassed(true);
-        setIsPracticalPassed(true);
-     }
-  }, [student, ecosystem.id, isOpen, isCompleted]);
+  }, [isOpen, student, ecosystem.id, isCompleted]);
 
   const handleVideoEnd = () => {
     setIsVideoWatched(true);
