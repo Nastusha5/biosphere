@@ -14,13 +14,13 @@ export function TeacherChatSheet({ open, onOpenChange, studentId, teacherId }) {
   const textareaRef = useRef(null);
 
   useEffect(() => {
-    if (open && teacherId && studentId) {
-      const unsubscribe = getMessages(teacherId, studentId, (loadedMessages) => {
+    if (open && studentId) {
+      const unsubscribe = getMessages(studentId, (loadedMessages) => {
         setMessages(loadedMessages);
       });
       return () => unsubscribe();
     }
-  }, [open, teacherId, studentId]);
+  }, [open, studentId]);
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -41,7 +41,7 @@ export function TeacherChatSheet({ open, onOpenChange, studentId, teacherId }) {
 
     setIsLoading(true);
     try {
-      await sendMessage(teacherId, studentId, studentId, input);
+      await sendMessage(studentId, input, 'student');
       setInput('');
     } catch (error) {
       console.error('Error sending message:', error);
@@ -50,9 +50,9 @@ export function TeacherChatSheet({ open, onOpenChange, studentId, teacherId }) {
     }
   };
 
-  const getSenderRole = (senderId) => {
-    if (senderId === studentId) return 'user';
-    if (senderId === teacherId) return 'teacher';
+  const getSenderRole = (sender) => {
+    if (sender === 'student') return 'user';
+    if (sender === 'teacher') return 'teacher';
     return 'unknown';
   };
 
@@ -80,7 +80,7 @@ export function TeacherChatSheet({ open, onOpenChange, studentId, teacherId }) {
               </div>
             )}
             {messages.map((m) => {
-              const role = getSenderRole(m.senderId);
+              const role = getSenderRole(m.sender);
               return (
                 <div key={m.id} className={`${styles.messageRow} ${role === 'user' ? styles.userRow : styles.teacherRow}`}>
                     <div className={styles.avatar}>
