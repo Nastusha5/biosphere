@@ -1,62 +1,65 @@
 
-import { ref, onValue, push, serverTimestamp } from "firebase/database";
-import { database } from '../firebase'; 
+import { collection, query, onSnapshot, addDoc, serverTimestamp, getDocs, doc, setDoc, orderBy } from "firebase/firestore";
+import { db } from '../firebase';
+import { getStudentFromSession } from "./studentApi";
 
 export const getMessages = (studentId, callback) => {
-  const messagesRef = ref(database, `chats/${studentId}`);
-  return onValue(messagesRef, (snapshot) => {
-    const messagesData = snapshot.val();
-    if (messagesData) {
-      const messagesList = Object.values(messagesData);
-      callback(messagesList);
-    } else {
-      callback([]);
-    }
+  const messagesRef = collection(db, `chats/${studentId}/messages`);
+  const q = query(messagesRef, orderBy("timestamp", "asc"));
+  return onSnapshot(q, (querySnapshot) => {
+    const messagesList = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+    callback(messagesList);
   });
 };
 
 export const getDialogs = (callback) => {
-  const dialogsRef = ref(database, 'chats');
-  return onValue(dialogsRef, (snapshot) => {
-    const dialogsData = snapshot.val();
-    if (dialogsData) {
-      const dialogsList = Object.keys(dialogsData).map(studentId => {
-        const messages = dialogsData[studentId];
-        const lastMessage = messages[Object.keys(messages)[Object.keys(messages).length - 1]];
-        return {
-          student: { id: studentId, firstName: 'User', lastName: studentId }, 
-          lastMessage: {
-            text: lastMessage.text,
-            timestamp: lastMessage.timestamp
-          }
-        };
-      });
-      callback(dialogsList);
-    } else {
-      callback([]);
-    }
+  const dialogsRef = collection(db, 'chats');
+  const q = query(dialogsRef, orderBy("lastMessage.timestamp", "desc"));
+
+  return onSnapshot(q, (snapshot) => {
+    const dialogsList = snapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        student: data.student,
+        lastMessage: data.lastMessage,
+      };
+    });
+    callback(dialogsList);
   });
 };
 
 export const getChatHistory = (studentId, callback) => {
-  const chatHistoryRef = ref(database, `chats/${studentId}`);
-  return onValue(chatHistoryRef, (snapshot) => {
-    const messagesData = snapshot.val();
-    if (messagesData) {
-      const messagesList = Object.values(messagesData);
-      callback(messagesList);
-    } else {
-      callback([]);
-    }
+  const chatHistoryRef = collection(db, `chats/${studentId}/messages`);
+  const q = query(chatHistoryRef, orderBy("timestamp", "asc"));
+  return onSnapshot(q, (querySnapshot) => {
+    const messagesList = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+    callback(messagesList);
   });
 };
 
-export const sendMessage = (studentId, text, sender) => {
-  const chatHistoryRef = ref(database, `chats/${studentId}`);
+export const sendMessage = async (studentId, text, sender) => {
+  const messagesRef = collection(db, `chats/${studentId}/messages`);
+  const chatDocRef = doc(db, 'chats', studentId);
+
   const newMessage = {
     text,
     sender,
-    timestamp: serverTimestamp()
+    timestamp: serverTimestamp(),
   };
-  return push(chatHistoryRef, newMessage);
+
+  addDoc(messagesRef, newMessage);
+
+  const student = await getStudentFromSession(studentId);
+
+  return setDoc(chatDocRef, {
+    lastMessage: {
+      text,
+      timestamp: serverTimestamp(),
+    },
+    student: { 
+      id: studentId, 
+      firstName: student?.firstName || 'User', 
+      lastName: student?.lastName || studentId, 
+    },
+  }, { merge: true });
 };
