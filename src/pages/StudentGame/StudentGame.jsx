@@ -8,6 +8,7 @@ import { ProgressTracker } from '../../components/game/progress-tracker';
 import { VideoPlayerModal } from '../../components/game/video-player';
 import { EcosystemInfoModal } from '../../components/game/ecosystem-info-modal';
 import { CompletionModal } from '../../components/game/completion-modal';
+import { GradesModal } from '../../components/game/grades-modal'; // Import GradesModal
 import { savannahContent, savannahFunFact } from '../../lib/ecosystems/savannah';
 import { desertContent, desertFunFact } from '../../lib/ecosystems/desert';
 import { swampContent, swampFunFact } from '../../lib/ecosystems/swamp';
@@ -44,6 +45,7 @@ export default function GamePage({ user, onLogout }) {
     const [isAiMentorOpen, setIsAiMentorOpen] = useState(false);
     const [isTeacherChatOpen, setIsTeacherChatOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isGradesModalOpen, setIsGradesModalOpen] = useState(false); // State for grades modal
 
     const currentEcosystem = ECOSYSTEMS.find(eco => !completedEcosystems.includes(eco.id));
     const allEcosystemsCompleted = completedEcosystems.length === ECOSYSTEMS.length;
@@ -67,9 +69,9 @@ export default function GamePage({ user, onLogout }) {
       }
   }, [user, navigate]);
     
-    const handleSaveScore = async (ecosystemId, scoreType, score) => {
+    const handleSaveScore = async (ecosystemId, scoreType, score, answers) => {
         if (!student || score < 0) return;
-        await saveStudentScore(student.id, ecosystemId, scoreType, score);
+        await saveStudentScore(student.id, ecosystemId, scoreType, score, answers); // Pass answers
     }
     
     const handleStartResearch = () => {
@@ -182,6 +184,11 @@ export default function GamePage({ user, onLogout }) {
                                 </div>
                             )}
                         </div>
+                        {allEcosystemsCompleted && (
+                            <button className={`${styles.button} ${styles.ghostButton} ${styles.navButton}`} onClick={() => setIsGradesModalOpen(true)}>
+                                <FaIcons.FaGraduationCap />
+                            </button>
+                        )}
                         <button onClick={onLogout} className={`${styles.button} ${styles.ghostButton} ${styles.navButton}`}>
                             <FaIcons.FaSignOutAlt />
                         </button>
@@ -231,6 +238,13 @@ export default function GamePage({ user, onLogout }) {
                     onClose={() => setShowCompletionModal(false)}
                 />
             )}
+
+            <GradesModal 
+                isOpen={isGradesModalOpen} 
+                onClose={() => setIsGradesModalOpen(false)} 
+                student={student} 
+                ecosystems={ECOSYSTEMS} 
+            />
         </div>
     );
 }
