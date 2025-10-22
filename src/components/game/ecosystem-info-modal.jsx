@@ -24,9 +24,9 @@ const TABS = [
 ];
 
 export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isCompleted, test, onScoreSave, student }) {
-  const [activeTab, setActiveTab] = useState(ecosystem.videoId ? "video" : "text");
+  const [activeTab, setActiveTab] = useState("video");
   const [isVideoWatched, setIsVideoWatched] = useState(isCompleted || !ecosystem.videoId);
-  const [isTextRead, setIsTextRead] = useState(isCompleted || !ecosystem.videoId);
+  const [isTextRead, setIsTextRead] = useState(isCompleted);
   const [isTestPassed, setIsTestPassed] = useState(false);
   const [isPracticalPassed, setIsPracticalPassed] = useState(false);
   const [isTestJustCompleted, setIsTestJustCompleted] = useState(false);
@@ -35,42 +35,25 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
   const [showFinalScoreModal, setShowFinalScoreModal] = useState(false);
 
   useEffect(() => {
-    if (!isOpen) return;
-
-    setActiveTab(ecosystem.videoId ? "video" : "text");
-    setIsVideoWatched(isCompleted || !ecosystem.videoId);
-    setIsTextRead(isCompleted || !ecosystem.videoId);
-    setShowFinalScoreModal(false);
-
     if (student?.scores && student.scores[ecosystem.id]) {
       const savedScores = student.scores[ecosystem.id];
       if (savedScores.test !== undefined) {
         setIsTestPassed(true);
         setTestScore(savedScores.test);
-      } else {
-        setIsTestPassed(false);
-        setTestScore(null);
       }
       if (savedScores.exercise !== undefined) {
         setIsPracticalPassed(true);
         setPracticalScore(savedScores.exercise);
-      } else {
-        setIsPracticalPassed(false);
-        setPracticalScore(null);
       }
-    } else {
-        setIsTestPassed(false);
-        setTestScore(null);
-        setIsPracticalPassed(false);
-        setPracticalScore(null);
     }
-
-    if (isCompleted) {
+    if (!isCompleted) {
+        const savedTestScore = student?.scores?.[ecosystem.id]?.test;
+        setIsTestPassed(savedTestScore !== undefined);
+     } else {
         setIsTestPassed(true);
         setIsPracticalPassed(true);
-    }
-
-  }, [student, ecosystem.id, isOpen, isCompleted, ecosystem.videoId]);
+     }
+  }, [student, ecosystem.id, isOpen, isCompleted]);
 
   const handleVideoEnd = () => {
     setIsVideoWatched(true);
@@ -124,10 +107,6 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
 
   if (!isOpen) return null;
 
-  const visibleTabs = TABS
-    .filter(tab => hasPracticalExercise || tab.id !== 'practical')
-    .filter(tab => ecosystem.videoId || tab.id !== 'video');
-
   return (
     <>
       <div className={styles.dialogOverlay}>
@@ -139,7 +118,7 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
 
           <div className={styles.tabsContainer}>
             <div className={styles.tabsList}>
-              {visibleTabs.map(tab => (
+              {TABS.filter(tab => hasPracticalExercise || tab.id !== 'practical').map(tab => (
                 <button 
                   key={tab.id}
                   onClick={() => handleTabChange(tab.id)}
@@ -155,7 +134,7 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
             </div>
             
             <div className={styles.tabsContent}>
-              {activeTab === 'video' && ecosystem.videoId &&
+              {activeTab === 'video' && 
                 <VideoTab videoId={ecosystem.videoId} onVideoEnd={handleVideoEnd} />
               }
               {activeTab === 'text' && 
@@ -190,7 +169,7 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
       </div>
       <FinalScoreModal 
           isOpen={showFinalScoreModal} 
-          onClose={onComplete} 
+          onClose={onComplete} // Pass onComplete here
           testScore={testScore}
           practicalScore={isAgroecosystem ? null : practicalScore}
       />
