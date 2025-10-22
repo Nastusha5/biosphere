@@ -1,5 +1,5 @@
 
-import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc, query, where } from "firebase/firestore";
+import { collection, getDocs, addDoc, doc, getDoc, updateDoc, deleteDoc, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 
 const groupsCollection = collection(db, 'groups');
@@ -11,9 +11,23 @@ export const getGroupsByTeacher = async (teacherId) => {
 };
 
 export const getStudentsByGroup = async (groupId) => {
-    const studentsCollection = collection(db, `groups/${groupId}/students`);
-    const studentsSnapshot = await getDocs(studentsCollection);
-    return studentsSnapshot.docs.map(studentDoc => ({ ...studentDoc.data(), id: studentDoc.id }));
+    const groupStudentsCollection = collection(db, `groups/${groupId}/students`);
+    const groupStudentsSnapshot = await getDocs(groupStudentsCollection);
+    
+    const studentPromises = groupStudentsSnapshot.docs.map(async (studentSubDoc) => {
+        const studentDocRef = doc(db, 'students', studentSubDoc.id);
+        const studentDoc = await getDoc(studentDocRef);
+        
+        const subData = studentSubDoc.data();
+        
+        if (studentDoc.exists()) {
+            return { ...subData, ...studentDoc.data(), id: studentSubDoc.id };
+        }
+        
+        return { id: studentSubDoc.id, ...subData };
+    });
+    
+    return await Promise.all(studentPromises);
 }
 
 export const createGroup = async (groupName, teacherId) => {
@@ -52,13 +66,10 @@ export const deleteStudent = async (groupId, studentId) => {
 export const getGroups = async (teacherId) => {
   const q = query(groupsCollection, where("teacherId", "==", teacherId));
   const snapshot = await getDocs(q);
-  const groups = [];
-  for (const groupDoc of snapshot.docs) {
+  const groupPromises = snapshot.docs.map(async (groupDoc) => {
     const groupData = groupDoc.data();
-    const studentsCollection = collection(db, `groups/${groupDoc.id}/students`);
-    const studentsSnapshot = await getDocs(studentsCollection);
-    const students = studentsSnapshot.docs.map(studentDoc => ({ ...studentDoc.data(), id: studentDoc.id }));
-    groups.push({ ...groupData, id: groupDoc.id, students });
-  }
-  return groups;
+    const students = await getStudentsByGroup(groupDoc.id);
+    return { ...groupData, id: groupDoc.id, students };
+  });
+  return await Promise.all(groupPromises);
 };
