@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, getDoc } from "firebase/firestore";
 import Header from "./components/Header/Header";
 import LoginModal from "./components/LoginModal/LoginModal";
 import HomePage from "./pages/HomePage";
@@ -21,8 +21,17 @@ const AppWrapper = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      setCurrentUser(user);
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const userDoc = await getDoc(doc(db, 'teachers', user.uid));
+        if (userDoc.exists()) {
+          setCurrentUser({ ...user, ...userDoc.data() });
+        } else {
+          setCurrentUser(user);
+        }
+      } else {
+        setCurrentUser(null);
+      }
     });
     return unsubscribe;
   }, []);
