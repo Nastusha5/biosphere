@@ -110,7 +110,6 @@ export default function JournalPage() {
               </div>
               {openAccordionItem === group.id && (
                 <div className={styles.accordionContent}>
-                  <div className={styles.tableContainer}>
                     <table className={styles.studentsTable}>
                       <thead>
                         <tr>
@@ -135,9 +134,9 @@ export default function JournalPage() {
                           const overallScore = calculateOverallScore(student.scores);
                           return (
                             <tr key={student.id}>
-                              <td className={styles.studentNameColumn}>{`${student.lastName} ${student.firstName}`}</td>
-                              <td className={styles.scoreColumn}>{overallScore}</td>
-                              <td className={styles.progressColumn}>
+                              <td data-label="Ім'я студента" className={styles.studentNameColumn}>{`${student.lastName} ${student.firstName}`}</td>
+                              <td data-label="Загальний бал" className={styles.scoreColumn}>{overallScore}</td>
+                              <td data-label="Прогрес" className={styles.progressColumn}>
                                 <div className={styles.progressContainer}>
                                   <progress value={progress} max="100"></progress>
                                   <span>{Math.round(progress)}%</span>
@@ -149,7 +148,7 @@ export default function JournalPage() {
                                 const exerciseScore = ecoScores.exercise ?? (eco.id === 'agroecosystem' ? '' : '-');
                                 const total = (ecoScores.test || 0) + (ecoScores.exercise || 0);
                                 return (
-                                  <td key={eco.id}>
+                                  <td key={eco.id} data-label={eco.name}>
                                     <div className={styles.cellContent}>
                                       <span>{testScore}</span>
                                       <span>{exerciseScore}</span>
@@ -170,7 +169,6 @@ export default function JournalPage() {
                         )}
                       </tbody>
                     </table>
-                  </div>
                 </div>
               )}
             </div>
