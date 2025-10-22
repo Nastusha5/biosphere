@@ -1,5 +1,5 @@
 
-import { collection, getDocs, addDoc, doc, getDoc, updateDoc, deleteDoc, query, where } from "firebase/firestore";
+import { collection, getDocs, addDoc, doc, getDoc, updateDoc, deleteDoc, query, where, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 const groupsCollection = collection(db, 'groups');
@@ -46,20 +46,32 @@ export const deleteGroup = async (groupId) => {
 };
 
 export const createStudent = async (groupId, { firstName, lastName }) => {
-    const studentsCollection = collection(db, `groups/${groupId}/students`);
     const password = Math.random().toString(36).slice(-8);
-    const newStudent = { firstName, lastName, password };
-    const docRef = await addDoc(studentsCollection, newStudent);
-    return { ...newStudent, id: docRef.id };
+    const newStudentData = { firstName, lastName, password };
+
+    const studentDocRef = await addDoc(collection(db, "students"), {
+        firstName,
+        lastName,
+        password
+    });
+
+    await setDoc(doc(db, `groups/${groupId}/students`, studentDocRef.id), {
+        password 
+    });
+
+    return { ...newStudentData, id: studentDocRef.id };
 };
 
 export const updateStudent = async (groupId, studentId, { firstName, lastName }) => {
-    const studentRef = doc(db, `groups/${groupId}/students/${studentId}`);
+    const studentRef = doc(db, `students`, studentId);
     await updateDoc(studentRef, { firstName, lastName });
 };
 
 export const deleteStudent = async (groupId, studentId) => {
-    const studentRef = doc(db, `groups/${groupId}/students/${studentId}`);
+    const groupStudentRef = doc(db, `groups/${groupId}/students/${studentId}`);
+    await deleteDoc(groupStudentRef);
+
+    const studentRef = doc(db, `students`, studentId);
     await deleteDoc(studentRef);
 };
 
