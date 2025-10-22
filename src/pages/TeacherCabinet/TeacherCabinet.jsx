@@ -5,6 +5,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import Groups from '../Groups/Groups';
 import Chat from '../Chat/Chat';
 import Journal from '../Journal/Journal';
+import Dashboard from './Dashboard';
 import * as FaIcons from 'react-icons/fa';
 import styles from './TeacherCabinet.module.css';
 
@@ -38,6 +39,7 @@ const TeacherCabinet = ({ onLogout, user }) => {
           <h1 className={styles.pageTitle}>{getPageTitle()}</h1>
         </div>
         <Routes>
+          <Route path="dashboard" element={<Dashboard user={user} />} />
           <Route path="groups" element={<Groups user={user} />} />
           <Route path="chat" element={<Chat user={user} />} />
           <Route path="journal" element={<Journal />} />
