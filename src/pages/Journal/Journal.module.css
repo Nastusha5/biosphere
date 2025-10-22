@@ -196,3 +196,58 @@
     font-size: 1.2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
+
+@media (max-width: 768px) {
+    .studentsTable {
+        min-width: 0;
+    }
+
+    .studentsTable thead {
+        display: none;
+    }
+
+    .studentsTable tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #fff;
+        padding: 1rem;
+    }
+
+    .studentsTable td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 0.8rem 0;
+    }
+
+    .studentsTable td:last-child {
+        border-bottom: none;
+    }
+
+    .studentsTable td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #333;
+    }
+
+    .studentNameColumn {
+        width: auto;
+        font-size: 1.2rem;
+        font-weight: 600;
+        border-bottom: 2px solid #e66b00;
+        padding-bottom: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .scoreColumn,
+    .progressColumn {
+        display: none;
+    }
+
+    .cellContent {
+        display: contents;
+    }
+}
