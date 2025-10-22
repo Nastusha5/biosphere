@@ -146,3 +146,61 @@
 .studentsTable tr:last-child td {
   border-bottom: none;
 }
+
+@media (max-width: 768px) {
+  .studentsTable thead {
+    display: none;
+  }
+
+  .studentsTable tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+
+  .studentsTable td {
+    display: block;
+    text-align: right;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    padding-left: 50%;
+  }
+  
+  .studentsTable td:last-child {
+      border-bottom: 0;
+  }
+
+  .studentsTable td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1.2rem;
+    width: calc(50% - 2.4rem);
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .groupActions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .accordionHeader {
+    padding: 1rem 1.2rem;
+  }
+  
+  .groupName {
+    font-size: 1.2rem;
+  }
+  
+  .actionButton {
+    font-size: 1.2rem;
+    margin-left: 0.8rem;
+  }
+}
