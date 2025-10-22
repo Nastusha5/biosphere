@@ -188,9 +188,9 @@ const Groups = ({ user }) => {
                   <tbody>
                   {group.students && group.students.map(student => (
                     <tr key={student.id}>
-                      <td>{`${student.lastName} ${student.firstName}`}</td>
-                      <td>{student.password}</td>
-                      <td>
+                      <td data-label="Прізвище та ім'я">{`${student.lastName} ${student.firstName}`}</td>
+                      <td data-label="Пароль">{student.password}</td>
+                      <td data-label="Дії">
                         <button className={styles.actionButton} onClick={() => handleOpenStudentModal(student, group.id)}><FaIcons.FaEdit /></button>
                         <button className={styles.actionButton} onClick={() => handleDeleteStudent(student.id, group.id)}><FaIcons.FaTrash /></button>
                       </td>
