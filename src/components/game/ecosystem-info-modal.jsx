@@ -128,7 +128,7 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
                     (tab.id === 'practical' && !isTestPassed)
                   )}
                   className={`${styles.tabTrigger} ${activeTab === tab.id ? styles.activeTab : ''}`}>
-                  {tab.icon} {tab.label}
+                  {tab.icon} <span className={styles.tabLabel}>{tab.label}</span>
                 </button>
               ))}
             </div>
