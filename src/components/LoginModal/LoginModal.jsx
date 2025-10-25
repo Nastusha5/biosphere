@@ -63,7 +63,7 @@ const LoginModal = ({ onClose, onLogin }) => {
 
     try {
       const groupsCollectionRef = collection(db, 'groups');
-      const groupsSnapshot = await getDocs(groupsCollectionf);
+      const groupsSnapshot = await getDocs(groupsCollectionRef);
       let foundStudent = null;
 
       for (const groupDoc of groupsSnapshot.docs) {
@@ -150,6 +150,7 @@ const LoginModal = ({ onClose, onLogin }) => {
           </form>
         ) : (
           <form className={styles.form} onSubmit={handleLogin}>
+            {/* Honeypot password field to trick password managers */}
             <input type="password" name="password" tabIndex={-1} autoComplete="off" style={{ display: 'none' }} />
             <label htmlFor="loginEmail" className={styles.label}>Електронна пошта</label>
             <input type="email" id="loginEmail" name="loginEmail" className={styles.input} placeholder="Введіть вашу пошту" required autoComplete={`username-${randomString}`}/>
