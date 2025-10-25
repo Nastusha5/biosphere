@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useId } from 'react';
 import styles from './LoginModal.module.css';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from '../../firebase';
@@ -11,6 +11,7 @@ const LoginModal = ({ onClose, onLogin }) => {
   const [isRegistering, setIsRegistering] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const randomString = useId();
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -62,7 +63,7 @@ const LoginModal = ({ onClose, onLogin }) => {
 
     try {
       const groupsCollectionRef = collection(db, 'groups');
-      const groupsSnapshot = await getDocs(groupsCollectionRef);
+      const groupsSnapshot = await getDocs(groupsCollectionf);
       let foundStudent = null;
 
       for (const groupDoc of groupsSnapshot.docs) {
@@ -137,7 +138,7 @@ const LoginModal = ({ onClose, onLogin }) => {
             <input type="text" id="registerFirstName" name="registerFirstName" className={styles.input} placeholder="Введіть ваше ім'я" required autoComplete="given-name"/>
 
             <label htmlFor="registerEmail" className={styles.label}>Електронна пошта</label>
-            <input type="email" id="registerEmail" name="registerEmail" className={styles.input} placeholder="Введіть вашу пошту" required autoComplete="email"/>
+            <input type="email" id="registerEmail" name="registerEmail" className={styles.input} placeholder="Введіть вашу пошту" required autoComplete={`username-${randomString}`}/>
 
             <label htmlFor="registerPassword" className={styles.label}>Пароль</label>
             <input type="password" id="registerPassword" name="registerPassword" className={styles.input} placeholder="Введіть ваш пароль" required autoComplete="new-password"/>
@@ -149,8 +150,9 @@ const LoginModal = ({ onClose, onLogin }) => {
           </form>
         ) : (
           <form className={styles.form} onSubmit={handleLogin}>
+            <input type="password" name="password" tabIndex={-1} autoComplete="off" style={{ display: 'none' }} />
             <label htmlFor="loginEmail" className={styles.label}>Електронна пошта</label>
-            <input type="email" id="loginEmail" name="loginEmail" className={styles.input} placeholder="Введіть вашу пошту" required autoComplete="email"/>
+            <input type="email" id="loginEmail" name="loginEmail" className={styles.input} placeholder="Введіть вашу пошту" required autoComplete={`username-${randomString}`}/>
             <label htmlFor="loginPassword" className={styles.label}>Пароль</label>
             <input type="password" id="loginPassword" name="loginPassword" className={styles.input} placeholder="Введіть ваш пароль" required autoComplete="current-password"/>
 
