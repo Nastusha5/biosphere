@@ -8,12 +8,12 @@ import { ProgressTracker } from '../../components/game/progress-tracker';
 import { VideoPlayerModal } from '../../components/game/video-player';
 import { EcosystemInfoModal } from '../../components/game/ecosystem-info-modal';
 import { CompletionModal } from '../../components/game/completion-modal';
-import { GradesModal } from '../../components/game/grades-modal'; // Import GradesModal
+import { GradesModal } from '../../components/game/grades-modal'; 
 import { savannahContent, savannahFunFact, savannahTrophicWeb } from '../../lib/ecosystems/savannah';
 import { desertContent, desertFunFact, desertTrophicWeb } from '../../lib/ecosystems/desert';
 import { swampContent, swampFunFact, swampTrophicWeb } from '../../lib/ecosystems/swamp';
 import { oceanContent, oceanFunFact, oceanTrophicWeb } from '../../lib/ecosystems/ocean';
-import { agroecosystemContent, agroecosystemFunFact, agroecosystemVideo, agroecosystemTrophicWeb } from '../../lib/ecosystems/agroecosystem';
+import { agroecosystemContent, agroecosystemFunFact, agroecosystemTrophicWeb } from '../../lib/ecosystems/agroecosystem';
 import { tropicalForestsContent, tropicalForestsFunFact, tropicalForestsTrophicWeb } from '../../lib/ecosystems/tropical-forests';
 import { AiMentorSheet } from '../../components/game/ai-mentor-sheet';
 import { TeacherChatSheet } from '../../components/game/teacher-chat-sheet';
