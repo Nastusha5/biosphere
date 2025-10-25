@@ -47,7 +47,7 @@ export function GradesModal({ isOpen, onClose, student, ecosystems }) {
                                 const testScore = scores.test || 0;
                                 const exerciseScore = scores.exercise || 0;
                                 const sum = testScore + exerciseScore;
-                                const hasPractical = eco.id !== 'agroecosystem';
+                                const hasPractical = eco.id;
 
                                 return (
                                     <tr key={eco.id}>
