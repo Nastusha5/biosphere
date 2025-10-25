@@ -9,12 +9,12 @@ import { VideoPlayerModal } from '../../components/game/video-player';
 import { EcosystemInfoModal } from '../../components/game/ecosystem-info-modal';
 import { CompletionModal } from '../../components/game/completion-modal';
 import { GradesModal } from '../../components/game/grades-modal'; // Import GradesModal
-import { savannahContent, savannahFunFact } from '../../lib/ecosystems/savannah';
-import { desertContent, desertFunFact } from '../../lib/ecosystems/desert';
-import { swampContent, swampFunFact } from '../../lib/ecosystems/swamp';
-import { oceanContent, oceanFunFact } from '../../lib/ecosystems/ocean';
-import { agroecosystemContent, agroecosystemFunFact } from '../../lib/ecosystems/agroecosystem';
-import { tropicalForestsContent, tropicalForestsFunFact } from '../../lib/ecosystems/tropical-forests';
+import { savannahContent, savannahFunFact, savannahTrophicWeb } from '../../lib/ecosystems/savannah';
+import { desertContent, desertFunFact, desertTrophicWeb } from '../../lib/ecosystems/desert';
+import { swampContent, swampFunFact, swampTrophicWeb } from '../../lib/ecosystems/swamp';
+import { oceanContent, oceanFunFact, oceanTrophicWeb } from '../../lib/ecosystems/ocean';
+import { agroecosystemContent, agroecosystemFunFact, agroecosystemVideo, agroecosystemTrophicWeb } from '../../lib/ecosystems/agroecosystem';
+import { tropicalForestsContent, tropicalForestsFunFact, tropicalForestsTrophicWeb } from '../../lib/ecosystems/tropical-forests';
 import { AiMentorSheet } from '../../components/game/ai-mentor-sheet';
 import { TeacherChatSheet } from '../../components/game/teacher-chat-sheet';
 import { allTests } from '../../lib/ecosystems/tests';
@@ -23,12 +23,12 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 
 const ECOSYSTEMS = [
-  { id: 'desert', name: 'Пустеля', icon: '/progress/desert.png', content: desertContent, funFact: desertFunFact, videoId: 'g6FIFhufiVs', testId: 'desert-test' },
-  { id: 'savannah', name: 'Савана', icon: '/progress/savannah.png', content: savannahContent, funFact: savannahFunFact, videoId: 'qh7JLKIJ4Nc', testId: 'savannah-test' },
-  { id: 'ocean', name: 'Океан', icon: '/progress/ocean.png', content: oceanContent, funFact: oceanFunFact, videoId: 'jHwXRPBCsec', testId: 'ocean-test' },
-  { id: 'tropical-forests', name: 'Тропічні ліси', icon: '/progress/tropical-forests.png', content: tropicalForestsContent, funFact: tropicalForestsFunFact, videoId: 'Mv5Vvy9E3KQ', testId: 'tropical-forests-test' },
-  { id: 'swamp', name: 'Мангрові угіддя', icon: '/progress/swamp.png', content: swampContent, funFact: swampFunFact, videoId: 'KlVmRjcN0Yk', testId: 'swamp-test' },
-  { id: 'agroecosystem', name: 'Агроекосистема', icon: '/progress/agroecosystem.png', content: agroecosystemContent, funFact: agroecosystemFunFact, videoId: null, testId: 'agroecosystem-test' },
+  { id: 'desert', name: 'Пустеля', icon: '/progress/desert.png', content: desertContent, funFact: desertFunFact, videoId: 'g6FIFhufiVs', testId: 'desert-test', trophicWeb: desertTrophicWeb },
+  { id: 'savannah', name: 'Савана', icon: '/progress/savannah.png', content: savannahContent, funFact: savannahFunFact, videoId: 'qh7JLKIJ4Nc', testId: 'savannah-test', trophicWeb: savannahTrophicWeb },
+  { id: 'ocean', name: 'Океан', icon: '/progress/ocean.png', content: oceanContent, funFact: oceanFunFact, videoId: 'jHwXRPBCsec', testId: 'ocean-test', trophicWeb: oceanTrophicWeb },
+  { id: 'tropical-forests', name: 'Тропічні ліси', icon: '/progress/tropical-forests.png', content: tropicalForestsContent, funFact: tropicalForestsFunFact, videoId: 'Mv5Vvy9E3KQ', testId: 'tropical-forests-test', trophicWeb: tropicalForestsTrophicWeb },
+  { id: 'swamp', name: 'Мангрові угіддя', icon: '/progress/swamp.png', content: swampContent, funFact: swampFunFact, videoId: 'KlVmRjcN0Yk', testId: 'swamp-test', trophicWeb: swampTrophicWeb },
+  { id: 'agroecosystem', name: 'Агроекосистема', icon: '/progress/agroecosystem.png', content: agroecosystemContent, funFact: agroecosystemFunFact, videoId: 'TMRUCwrV8CI', testId: 'agroecosystem-test', trophicWeb: agroecosystemTrophicWeb },
 ];
 
 export default function GamePage({ user, onLogout }) {
