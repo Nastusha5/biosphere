@@ -13,6 +13,7 @@ import { oceanTrophicWeb } from '../../lib/ecosystems/ocean';
 import { swampTrophicWeb } from '../../lib/ecosystems/swamp';
 import { tropicalForestsTrophicWeb } from '../../lib/ecosystems/tropical-forests';
 import { desertTrophicWeb } from '../../lib/ecosystems/desert';
+import { agroecosystemTrophicWeb } from '../../lib/ecosystems/agroecosystem';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 
@@ -34,12 +35,13 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
   const [practicalScore, setPracticalScore] = useState(null);
   const [showFinalScoreModal, setShowFinalScoreModal] = useState(false);
 
+  const hasPracticalExercise = ['savannah', 'ocean', 'swamp', 'tropical-forests', 'desert', 'agroecosystem'].includes(ecosystem.id);
+
   useEffect(() => {
     if (isOpen) {
       const savedScores = student?.scores?.[ecosystem.id] || {};
       const testCompleted = savedScores.test !== undefined;
       const practicalCompleted = savedScores.exercise !== undefined;
-      const hasPractical = ['savannah', 'ocean', 'swamp', 'tropical-forests', 'desert'].includes(ecosystem.id);
 
       setIsTestPassed(testCompleted);
       setTestScore(testCompleted ? savedScores.test : null);
@@ -56,7 +58,7 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
       if (videoEffectivelyWatched) initialTab = "text";
       if (textEffectivelyRead) initialTab = "test";
       if (testCompleted) {
-        if (hasPractical && !practicalCompleted) {
+        if (hasPracticalExercise && !practicalCompleted) {
           initialTab = "practical";
         } else {
           initialTab = "test"; 
@@ -68,7 +70,7 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
     } else {
       setIsTestJustCompleted(false);
     }
-  }, [isOpen, student, ecosystem.id, isCompleted]);
+  }, [isOpen, student, ecosystem.id, isCompleted, hasPracticalExercise]);
 
   const handleVideoEnd = () => {
     setIsVideoWatched(true);
@@ -91,8 +93,7 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
 
   const proceedFromTest = () => {
     setIsTestJustCompleted(false);
-    const hasPractical = ['savannah', 'ocean', 'swamp', 'tropical-forests', 'desert'].includes(ecosystem.id);
-    if (hasPractical) {
+    if (hasPracticalExercise) {
         setActiveTab('practical');
     } else {
         setShowFinalScoreModal(true);
@@ -108,17 +109,15 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
 
   const getExerciseData = () => {
     switch (ecosystem.id) {
-      case 'savannah': return savannahTrophicWeb;
-      case 'ocean': return oceanTrophicWeb;
-      case 'swamp': return swampTrophicWeb;
-      case 'tropical-forests': return tropicalForestsTrophicWeb;
-      case 'desert': return desertTrophicWeb;
-      default: return null;
+      case 'savannah': return savannahTrophicWeb || [];
+      case 'ocean': return oceanTrophicWeb || [];
+      case 'swamp': return swampTrophicWeb || [];
+      case 'tropical-forests': return tropicalForestsTrophicWeb || [];
+      case 'desert': return desertTrophicWeb || [];
+      case 'agroecosystem': return agroecosystemTrophicWeb || [];
+      default: return [];
     }
   }
-  
-  const isAgroecosystem = ecosystem.id === 'agroecosystem';
-  const hasPracticalExercise = ['savannah', 'ocean', 'swamp', 'tropical-forests', 'desert'].includes(ecosystem.id);
 
   if (!isOpen) return null;
 
@@ -137,11 +136,11 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
                 <button 
                   key={tab.id}
                   onClick={() => handleTabChange(tab.id)}
-                  disabled={(
+                  disabled={
                     (tab.id === 'text' && !isVideoWatched) ||
                     (tab.id === 'test' && (!isTextRead || !test)) ||
                     (tab.id === 'practical' && !isTestPassed)
-                  )}
+                  }
                   className={`${styles.tabTrigger} ${activeTab === tab.id ? styles.activeTab : ''}`}>
                   {tab.icon} <span className={styles.tabLabel}>{tab.label}</span>
                 </button>
@@ -184,9 +183,9 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
       </div>
       <FinalScoreModal 
           isOpen={showFinalScoreModal} 
-          onClose={onComplete} // Pass onComplete here
+          onClose={onComplete}
           testScore={testScore}
-          practicalScore={isAgroecosystem ? null : practicalScore}
+          practicalScore={practicalScore}
       />
     </>
   );
