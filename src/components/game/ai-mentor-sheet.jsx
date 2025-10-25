@@ -9,7 +9,7 @@ const askAiMentor = async ({ question, history }) => {
     console.log("Asking AI Mentor:", { question, history });
     await new Promise(resolve => setTimeout(resolve, 1500));
     const responses = [
-        "Наразі фукнціонал Ai-ментор відпочиває. Невдовзі він повернетися!"
+        "Наразі Ai-ментор відпочиває. Невдовзі він повернетися!"
     ];
     return responses[Math.floor(Math.random() * responses.length)];
 };
