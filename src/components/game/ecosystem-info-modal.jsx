@@ -41,20 +41,17 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
       const practicalCompleted = savedScores.exercise !== undefined;
       const hasPractical = ['savannah', 'ocean', 'swamp', 'tropical-forests', 'desert'].includes(ecosystem.id);
 
-      // Set completion states from saved data
       setIsTestPassed(testCompleted);
       setTestScore(testCompleted ? savedScores.test : null);
       setIsPracticalPassed(practicalCompleted);
       setPracticalScore(practicalCompleted ? savedScores.exercise : null);
       
-      // Infer pre-requisite steps completion
       const videoEffectivelyWatched = testCompleted || isCompleted || !ecosystem.videoId;
       const textEffectivelyRead = testCompleted || isCompleted;
 
       setIsVideoWatched(videoEffectivelyWatched);
       setIsTextRead(textEffectivelyRead);
 
-      // Determine the initial tab
       let initialTab = "video";
       if (videoEffectivelyWatched) initialTab = "text";
       if (textEffectivelyRead) initialTab = "test";
@@ -62,7 +59,6 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
         if (hasPractical && !practicalCompleted) {
           initialTab = "practical";
         } else {
-          // If practical is done or doesn't exist, just show the test results
           initialTab = "test"; 
         }
       }
@@ -70,7 +66,6 @@ export function EcosystemInfoModal({ isOpen, onClose, onComplete, ecosystem, isC
       setActiveTab(initialTab);
 
     } else {
-      // Reset transient state when modal closes
       setIsTestJustCompleted(false);
     }
   }, [isOpen, student, ecosystem.id, isCompleted]);
